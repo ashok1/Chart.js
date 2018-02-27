@@ -851,7 +851,9 @@ module.exports = function(Chart) {
 					context.translate(itemToDraw.labelX, itemToDraw.labelY);
 					context.rotate(itemToDraw.rotation);
 					context.font = itemToDraw.major ? majorTickFont.font : tickFont.font;
-					context.fillStyle = itemToDraw.major ? majorTickFontColor : tickFontColor;
+					//context.fillStyle = itemToDraw.major ? majorTickFontColor : tickFontColor;
+					//TODO:::: Update here to get different color labels
+					context.fillStyle = 'red';
 					context.textBaseline = itemToDraw.textBaseline;
 					context.textAlign = itemToDraw.textAlign;
 
