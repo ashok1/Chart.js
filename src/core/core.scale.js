@@ -853,7 +853,6 @@ module.exports = function(Chart) {
 					context.font = itemToDraw.major ? majorTickFont.font : tickFont.font;
 					//context.fillStyle = itemToDraw.major ? majorTickFontColor : tickFontColor;
 					//TODO:::: Update here to get different color labels
-					context.fillStyle = 'red';
 					context.textBaseline = itemToDraw.textBaseline;
 					context.textAlign = itemToDraw.textAlign;
 
@@ -865,11 +864,21 @@ module.exports = function(Chart) {
 
 						for (var i = 0; i < lineCount; ++i) {
 							// We just make sure the multiline element is a string here..
+							if(optionTicks.fontCallback){
+						context.fillStyle = optionTicks.fontCallback(label[i]);
+					} else {
+						context.fillStyle = itemToDraw.major ? majorTickFontColor : tickFontColor;
+					}
 							context.fillText('' + label[i], 0, y);
 							// apply same lineSpacing as calculated @ L#320
 							y += lineHeight;
 						}
 					} else {
+						if(optionTicks.fontCallback){
+						context.fillStyle = optionTicks.fontCallback(label);
+					} else {
+						context.fillStyle = itemToDraw.major ? majorTickFontColor : tickFontColor;
+					}
 						context.fillText(label, 0, 0);
 					}
 					context.restore();
